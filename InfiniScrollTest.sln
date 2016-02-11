@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfiniScrollTest", "InfiniScrollTest\InfiniScrollTest.csproj", "{EACBD101-8AEA-4C07-BE6F-A7520DED444A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfiniScrollTest.Tests", "InfiniScrollTest.Tests\InfiniScrollTest.Tests.csproj", "{12195C70-45A8-4AAF-9841-0D4EADE5EF56}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EACBD101-8AEA-4C07-BE6F-A7520DED444A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EACBD101-8AEA-4C07-BE6F-A7520DED444A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EACBD101-8AEA-4C07-BE6F-A7520DED444A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EACBD101-8AEA-4C07-BE6F-A7520DED444A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12195C70-45A8-4AAF-9841-0D4EADE5EF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12195C70-45A8-4AAF-9841-0D4EADE5EF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12195C70-45A8-4AAF-9841-0D4EADE5EF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12195C70-45A8-4AAF-9841-0D4EADE5EF56}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

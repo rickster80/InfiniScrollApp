@@ -1,0 +1,99 @@
+﻿@model List<InfiniScrollTest.Controllers.SomeThing>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="row">
+    <input type="text" value="" id="search" placeholder="search for something!" />
+</div>
+<div class="row" id="valuelist">
+    @foreach (var i in Model)
+    {
+    <div class="col-md-3" style="height:300px;">
+        @i.Name
+    </div>
+    }
+</div>
+<input type="button" class="btn btn-success" id="loadmore" value="load more" />
+<script src="~/Scripts/underscore.js"></script>
+@section scripts{
+<script>
+    var curPage = 1,
+    vals = $('#valuelist'),
+    srch = $('#search');
+
+    $('#search').on('change keyup', function (e) {
+        if ($(this).val().trim().length > 3) {
+            //reset the page count
+            curPage = 0;
+            vals.html('');
+            getValues();
+            //blank the view
+            //get the new results
+        }
+    });
+
+    var templ = _.template('<% _.forEach(values, function(u){%>' +
+        '<div class="col-md-3 val" style="height:300px;"><%=u.Name%></div>' +
+        '<%})%>');
+
+    $(window).scroll(function () {
+        //if over threshold, get the next page of results
+        var wintop = $(window).scrollTop(), docheight = $(document).height(), winheight = $(window).height();
+        var scrolltrigger = 0.95;
+        var scrollPercent = (wintop / (docheight - winheight)) * 100;
+
+        var scrollBottom = (wintop / (docheight - winheight)) > scrolltrigger;
+
+        if (scrollPercent > 60 || scrollBottom) {          
+            getValues();
+            console.log(curPage);
+        }
+
+        //console.log('wintop=' + wintop);
+        //console.log('docheight=' + docheight);
+        //console.log('winheight=' + winheight);
+        //console.log(wintop + '==' + (docheight - winheight));
+        //console.log(wintop == (docheight - winheight));
+        //console.log('%scrolled=' + (wintop / (docheight - winheight)) * 100);
+
+        if ((wintop / (docheight - winheight)) > scrolltrigger) {
+            console.log('scroll bottom');
+            lastAddedLiveFunc();
+        }
+    });
+    function getValues(){
+        $.get(
+            "/api/things/search/?page=" + (++curPage) + "&search=" + (srch.val().trim() || "")
+            )
+            .success(function (data) {
+                console.log(data);
+                var html = templ({ values: data });
+                console.log(html);
+                vals.append(html);
+            })
+            .error(function (err) {
+                console.log(err);
+            });
+    }
+    //$(function () {
+
+    //    $('#loadmore').click(function (e) {
+    //        $.get(
+    //            "/api/things/?page="+ (++curPage)
+    //        )
+    //        .success(function (data) {
+    //            console.log(data);
+    //            var html = templ({ values: data });
+    //            console.log(html);
+    //            vals.append(html);
+    //        })
+    //        .error(function (err) {
+    //            console.log(err);
+    //        });
+    //        console.log(curPage);
+    //    });
+    //});
+</script>
+    }
